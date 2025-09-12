@@ -40,6 +40,11 @@
    ```
 6. Use link to access admin panel
    
-  Django Admin url: localhost/admin
-  
-  
+     Django Admin url: localhost/admin
+
+
+## Run tests
+
+   ``` 
+   docker-compose exec backend pytest transactions/tests/ -v 
+   ```
