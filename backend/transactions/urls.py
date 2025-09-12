@@ -5,15 +5,17 @@ from .views import (
     SubcategoryViewSet, TransactionViewSet, SubcategoryFilterView, CategoryFilterView
 )
 
+"""endpoints for frontend"""
+
 router = DefaultRouter()
-router.register(r'statuses', StatusViewSet)
-router.register(r'transaction-types', TransactionTypeViewSet)
-router.register(r'categories', CategoryViewSet)
-router.register(r'subcategories', SubcategoryViewSet)
-router.register(r'transactions', TransactionViewSet)
+router.register(r'status', StatusViewSet, basename='status')
+router.register(r'transaction-type', TransactionTypeViewSet, basename='transactiontype')
+router.register(r'category', CategoryViewSet, basename='category')
+router.register(r'subcategory', SubcategoryViewSet, basename='subcategory')
+router.register(r'transaction', TransactionViewSet, basename='transaction')
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('subcategories/filter/', SubcategoryFilterView.as_view(), name='subcategory-filter'),
-    path('categories/filter/', CategoryFilterView.as_view(), name='category-filter'),
+    path('', include(router.urls)),  # Убрали лишний /api/
+    path('subcategory-filter/', SubcategoryFilterView.as_view(), name='subcategory-filter'),
+    path('category-filter/', CategoryFilterView.as_view(), name='category-filter'),
 ]

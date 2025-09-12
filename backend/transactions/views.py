@@ -10,29 +10,46 @@ from .serializers import (
 
 
 class StatusViewSet(viewsets.ModelViewSet):
+
+    """CRUD with modelviewset for status"""
+
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
 
 
 class TransactionTypeViewSet(viewsets.ModelViewSet):
+
+    """CRUD with modelviewset for transaction type"""
+
     queryset = TransactionType.objects.all()
     serializer_class = TransactionTypeSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
+
+    """CRUD with modelviewset for category"""
+
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
 class SubcategoryViewSet(viewsets.ModelViewSet):
+
+    """CRUD with modelviewset for subcategory"""
+
     queryset = Subcategory.objects.all()
     serializer_class = SubcategorySerializer
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
+    
+    """CRUD with modelviewset for transaction"""
+
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     filter_backends = [DjangoFilterBackend]
+
+    # filers 
     filterset_fields = {
         'create_date': ['exact', 'gte', 'lte'],
         'status': ['exact'],
@@ -43,6 +60,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class SubcategoryFilterView(APIView):
+    """Filter for category"""
     def get(self, request):
         category_id = request.query_params.get('category_id')
         if category_id:
@@ -54,6 +72,7 @@ class SubcategoryFilterView(APIView):
 
 
 class CategoryFilterView(APIView):
+    """Filter for subcategory"""
     def get(self, request):
         transaction_type_id = request.query_params.get('transaction_type_id')
         if transaction_type_id:

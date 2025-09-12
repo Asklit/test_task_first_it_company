@@ -1,21 +1,26 @@
 from tabnanny import verbose
 from rest_framework import serializers
 from .models import Status, TransactionType, Category, Subcategory, Transaction
+from transactions.validation import validate_transaction
+from django.core.exceptions import ValidationError
 
 
 class StatusSerializer(serializers.ModelSerializer):
+    """status serializer"""
     class Meta:
         model = Status
         fields = ['id', 'name']
 
 
 class TransactionTypeSerializer(serializers.ModelSerializer):
+    """transaction type serializer"""
     class Meta:
         model = TransactionType
         fields = ['id', 'name']
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    """categoty serializer"""
     root_transaction_type = serializers.PrimaryKeyRelatedField(queryset=TransactionType.objects.all())
 
     class Meta:
@@ -24,6 +29,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
+    """subcategoty serializer"""
     root_category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
 
     class Meta:
@@ -32,6 +38,7 @@ class SubcategorySerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    """transaction serializer"""
     status = serializers.PrimaryKeyRelatedField(queryset=Status.objects.all())
     transaction_type = serializers.PrimaryKeyRelatedField(queryset=TransactionType.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
@@ -42,7 +49,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     transaction_type_name = serializers.CharField(source='transaction_type.name', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
     subcategory_name = serializers.CharField(source='subcategory.name', read_only=True)
-
+    
     class Meta:
         model = Transaction
         fields = [
@@ -52,18 +59,20 @@ class TransactionSerializer(serializers.ModelSerializer):
         ]
 
     def validate(self, data):
-        subcategory = data.get('subcategory')
-        category = data.get('category')
-        if subcategory and category and subcategory.root_category != category:
-            raise serializers.ValidationError(
-                {"subcategory": "Подкатегория должна быть выбрана корректно."}
-            )
-        transaction_type = data.get('transaction_type')
-        if category and transaction_type and category.root_transaction_type != transaction_type:
-            raise serializers.ValidationError(
-                {"category": "Категория должна соответствовать выбранному типу транзакции."}
-            )
+        """
+        
+        Vatidation for category and subcategory
 
+        Subcategoty must related to category
+        Categoty must related to type
+
+        """
+
+        temp_obj = Transaction(**data)
+        try:
+            validate_transaction(temp_obj)
+        except ValidationError as e:
+            raise serializers.ValidationError(e.message_dict)
         return data
 
 
