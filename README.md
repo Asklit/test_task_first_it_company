@@ -23,7 +23,7 @@
    ```
 2. Create environment file
    ```bash
-   cp .env.example .env
+   cp .env.test .env
    ```
 3. Build and start containers
    ```bash
