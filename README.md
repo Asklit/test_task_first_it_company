@@ -1,4 +1,4 @@
-# Веб-сервис для управления движением денежных средств (ДДС) с полной Docker-интеграцией.
+# Web service for cash flow Management (DDS) with full Docker integration.
 
 ## Built With
 
