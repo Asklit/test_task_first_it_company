@@ -43,7 +43,7 @@
      http://localhost:8000/admin/
 
 
-## Run tests
+## Run tests with active docker container
 
    ``` 
    docker-compose exec backend pytest transactions/tests/ -v 
