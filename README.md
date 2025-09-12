@@ -48,3 +48,37 @@
    ``` 
    docker-compose exec backend pytest transactions/tests/ -v 
    ```
+## Core Entities
+
+### `Status`
+- **Purpose**: Defines transaction statuses (Business, Personal, Tax, etc.)
+- **Fields**: 
+  - `name` - Unique status identifier (max 30 chars)
+
+### `TransactionType`
+- **Purpose**: Categorizes transactions (Income, Expense)
+- **Fields**:
+  - `name` - Unique type name (max 30 chars)
+
+### `Category`
+- **Purpose**: Groups transactions under specific types
+- **Fields**:
+  - `name` - Unique category name (max 30 chars)
+  - `root_transaction_type` - ForeignKey to TransactionType
+
+### `Subcategory`
+- **Purpose**: Provides detailed classification within categories
+- **Fields**:
+  - `name` - Unique subcategory name (max 30 chars)
+  - `root_category` - ForeignKey to Category
+
+### `Transaction`
+- **Purpose**: Main financial transaction record
+- **Fields**:
+  - `create_date` - Auto-set to current date (editable)
+  - `status` - ForeignKey to Status
+  - `transaction_type` - ForeignKey to TransactionType
+  - `category` - ForeignKey to Category
+  - `subcategory` - ForeignKey to Subcategory
+  - `amount` - Decimal value (min 0.01)
+  - `notes` - Optional comments (max 100 chars)
