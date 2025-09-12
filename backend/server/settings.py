@@ -64,7 +64,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'transactions_db'),
+        'USER': os.getenv('POSTGRES_USER', 'superuser'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'test_password_for_db'),
+        'HOST': os.getenv('POSTGRES_HOST', 'transactions'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
