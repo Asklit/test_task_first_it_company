@@ -18,7 +18,7 @@
 
 1. Clone the repo
    ```bash
-   git clone github.com/Asklit/test_task_first_it_company
+   git clone https://github.com/Asklit/test_task_first_it_company
    cd test_task_first_it_company
    ```
 2. Create environment file
