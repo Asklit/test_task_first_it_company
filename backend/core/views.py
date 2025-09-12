@@ -49,7 +49,6 @@ class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
     filter_backends = [DjangoFilterBackend]
 
-    # filers 
     filterset_fields = {
         'create_date': ['exact', 'gte', 'lte'],
         'status': ['exact'],
@@ -60,7 +59,9 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class SubcategoryFilterView(APIView):
+    
     """Filter for category"""
+
     def get(self, request):
         category_id = request.query_params.get('category_id')
         if category_id:

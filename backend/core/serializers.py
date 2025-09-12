@@ -6,21 +6,27 @@ from django.core.exceptions import ValidationError
 
 
 class StatusSerializer(serializers.ModelSerializer):
+    
     """status serializer"""
+
     class Meta:
         model = Status
         fields = ['id', 'name']
 
 
 class TransactionTypeSerializer(serializers.ModelSerializer):
+
     """transaction type serializer"""
+
     class Meta:
         model = TransactionType
         fields = ['id', 'name']
 
 
 class CategorySerializer(serializers.ModelSerializer):
+
     """categoty serializer"""
+
     root_transaction_type = serializers.PrimaryKeyRelatedField(queryset=TransactionType.objects.all())
 
     class Meta:
@@ -29,7 +35,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
+
     """subcategoty serializer"""
+
     root_category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
 
     class Meta:
@@ -38,7 +46,9 @@ class SubcategorySerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+
     """transaction serializer"""
+
     status = serializers.PrimaryKeyRelatedField(queryset=Status.objects.all())
     transaction_type = serializers.PrimaryKeyRelatedField(queryset=TransactionType.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())

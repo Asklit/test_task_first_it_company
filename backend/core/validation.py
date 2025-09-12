@@ -1,10 +1,11 @@
-# transactions/validators.py
 from django.core.exceptions import ValidationError
 
 def validate_transaction(obj):
+
     """
     Валидация транзакции
     """
+
     errors = {}
     
     # Проверка положительности суммы

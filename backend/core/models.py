@@ -26,7 +26,7 @@ class TransactionType(models.Model):
 class Category(models.Model):
 
     """Entity category model"""
-    
+
     name = models.CharField(unique=True, max_length=30)
     root_transaction_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
 
@@ -34,7 +34,9 @@ class Category(models.Model):
         return self.name
 
 class Subcategory(models.Model):
+
     """Entity subcategory model"""
+
     name = models.CharField(unique=True, max_length=30)
     root_category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
@@ -42,7 +44,9 @@ class Subcategory(models.Model):
         return self.name
     
 class Transaction(models.Model):
+
     """Entity transaction model"""
+
     create_date = models.DateField(default=timezone.now)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     transaction_type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)
@@ -52,12 +56,16 @@ class Transaction(models.Model):
     notes = models.CharField(max_length=100, blank=True, default=None)
 
     def clean(self):
+
         """Валидация на уровне модели"""
+
         super().clean()
         validate_transaction(self)
     
     def save(self, *args, **kwargs):
+
         """Автоматическая валидация при сохранении"""
+        
         self.full_clean()
         super().save(*args, **kwargs)
 
