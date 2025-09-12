@@ -1,3 +1,6 @@
+#!/bin/sh
+# wait-for-db.sh
+
 set -e
 
 host="$1"
