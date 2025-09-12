@@ -40,7 +40,7 @@
    ```
 6. Use link to access admin panel
    
-     Django Admin url: localhost/admin
+     http://localhost:8000/admin/
 
 
 ## Run tests
