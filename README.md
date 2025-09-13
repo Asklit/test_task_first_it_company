@@ -48,6 +48,18 @@
    ```
    docker-compose exec backend pytest core/tests/ --cov=core --cov-report=term
    ```
+
+## Implementation Notes
+
+   This project utilizes Django's built-in admin panel as the primary user interface, that offers:
+   
+- Complete CRUD operations for all entities
+   
+- Admin actions for bulk operations
+   
+- Production-ready security features
+   
+   This project also included API endpoints for potential future frontend development.
    
 ## Core Entities
 
