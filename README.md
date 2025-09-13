@@ -45,9 +45,10 @@
 
 ## Run tests with active docker container
 
-   ``` 
-   docker-compose exec backend pytest core/tests/ -v 
    ```
+   docker-compose exec backend pytest core/tests/ --cov=core --cov-report=term
+   ```
+   
 ## Core Entities
 
 ### `Status`
