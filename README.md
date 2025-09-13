@@ -59,7 +59,7 @@
    
 - Production-ready security features
    
-   This project also included API endpoints for potential future frontend development.
+This project also included API endpoints for potential future frontend development.
    
 ## Core Entities
 
