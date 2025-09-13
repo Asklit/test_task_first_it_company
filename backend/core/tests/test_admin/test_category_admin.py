@@ -25,14 +25,14 @@ class TestCategoryAdmin:
 
     def test_category_admin_changelist(self, admin_client, category):
         """Тест отображения страницы списка категорий"""
-        url = reverse('admin:transactions_category_changelist')
+        url = reverse('admin:core_category_changelist')
         response = admin_client.get(url)
         assert response.status_code == 200
         assert category.name in str(response.content)
 
     def test_category_admin_add(self, admin_client, transaction_type):
         """Тест добавления категории через админку"""
-        url = reverse('admin:transactions_category_add')
+        url = reverse('admin:core_category_add')
         response = admin_client.get(url)
         assert response.status_code == 200
 

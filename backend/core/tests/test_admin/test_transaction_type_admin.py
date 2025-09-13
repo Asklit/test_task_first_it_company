@@ -20,14 +20,14 @@ class TestTransactionTypeAdmin:
 
     def test_transaction_type_admin_changelist(self, admin_client, transaction_type):
         """Тест отображения страницы списка типов транзакций"""
-        url = reverse('admin:transactions_transactiontype_changelist')
+        url = reverse('admin:core_transactiontype_changelist')
         response = admin_client.get(url)
         assert response.status_code == 200
         assert transaction_type.name in str(response.content)
 
     def test_transaction_type_admin_add(self, admin_client):
         """Тест добавления типа транзакции через админку"""
-        url = reverse('admin:transactions_transactiontype_add')
+        url = reverse('admin:core_transactiontype_add')
         response = admin_client.get(url)
         assert response.status_code == 200
 

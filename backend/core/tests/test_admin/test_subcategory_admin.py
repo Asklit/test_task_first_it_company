@@ -25,14 +25,14 @@ class TestSubcategoryAdmin:
 
     def test_subcategory_admin_changelist(self, admin_client, subcategory):
         """Тест отображения страницы списка подкатегорий"""
-        url = reverse('admin:transactions_subcategory_changelist')
+        url = reverse('admin:core_subcategory_changelist')
         response = admin_client.get(url)
         assert response.status_code == 200
         assert subcategory.name in str(response.content)
 
     def test_subcategory_admin_add(self, admin_client, category):
         """Тест добавления подкатегории через админку"""
-        url = reverse('admin:transactions_subcategory_add')
+        url = reverse('admin:core_subcategory_add')
         response = admin_client.get(url)
         assert response.status_code == 200
 

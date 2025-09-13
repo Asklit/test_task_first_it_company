@@ -14,8 +14,8 @@ class TestCategoryViewSet:
         response = api_client.get(url)
 
         assert response.status_code == status.HTTP_200_OK
-        assert len(response.data) == 1
-        assert response.data[0]['name'] == 'Salary'
+        assert len(response.data['results']) == 1
+        assert response.data['results'][0]['name'] == 'Salary'
 
     def test_create_category(self, api_client, transaction_type):
         """Тест создания категории"""

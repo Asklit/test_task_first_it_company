@@ -3,7 +3,6 @@ from rest_framework import status
 from django.urls import reverse
 from core.models import TransactionType
 
-
 @pytest.mark.django_db
 class TestTransactionTypeViewSet:
     """Тесты для TransactionTypeViewSet"""
@@ -14,8 +13,9 @@ class TestTransactionTypeViewSet:
         response = api_client.get(url)
 
         assert response.status_code == status.HTTP_200_OK
-        assert len(response.data) == 1
-        assert response.data[0]['name'] == 'Income'
+        assert len(response.data['results']) == 1
+        assert response.data['results'][0]['name'] == 'Income'
+        
 
     def test_create_transaction_type(self, api_client):
         """Тест создания типа транзакции"""

@@ -20,14 +20,14 @@ class TestStatusAdmin:
 
     def test_status_admin_changelist(self, admin_client, status):
         """Тест отображения страницы списка статусов"""
-        url = reverse('admin:transactions_status_changelist')
+        url = reverse('admin:core_status_changelist')
         response = admin_client.get(url)
         assert response.status_code == 200
         assert status.name in str(response.content)
 
     def test_status_admin_add(self, admin_client):
         """Тест добавления статуса через админку"""
-        url = reverse('admin:transactions_status_add')
+        url = reverse('admin:core_status_add')
         response = admin_client.get(url)
         assert response.status_code == 200
 
@@ -38,7 +38,7 @@ class TestStatusAdmin:
 
     def test_status_admin_change(self, admin_client, status):
         """Тест изменения статуса через админку"""
-        url = reverse('admin:transactions_status_change', args=[status.id])
+        url = reverse('admin:core_status_change', args=[status.id])
         response = admin_client.get(url)
         assert response.status_code == 200
 

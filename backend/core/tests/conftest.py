@@ -4,6 +4,10 @@ from django.utils import timezone
 from model_bakery import baker
 from core.models import Status, TransactionType, Category, Subcategory, Transaction
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': None,
+}
+
 @pytest.fixture
 def api_client():
     from rest_framework.test import APIClient
