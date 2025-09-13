@@ -12,7 +12,7 @@
 
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
-- Ensure ports `80`, `8000`, and `5432` are free
+- Ensure ports `8000`, and `5432` are free
 
 ## Installation
 
