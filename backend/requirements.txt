@@ -9,3 +9,4 @@ pytest
 pytest-django
 model_bakery
 django_extensions
+pytest-cov
