@@ -51,7 +51,7 @@
 
 ## Implementation Notes
 
-   This project utilizes Django's built-in admin panel as the primary user interface, that offers:
+   This project utilizes Django built-in admin panel as the primary user interface, that offers:
    
 - Complete CRUD operations for all entities
    
@@ -64,34 +64,34 @@ This project also included API endpoints for potential future frontend developme
 ## Core Entities
 
 ### `Status`
-- **Purpose**: Defines transaction statuses (Business, Personal, Tax, etc.)
+- **Purpose**: Defines transaction statuses
 - **Fields**: 
-  - `name` - Unique status identifier (max 30 chars)
+  - `name` - Unique status identifier
 
 ### `TransactionType`
-- **Purpose**: Categorizes transactions (Income, Expense)
+- **Purpose**: Categorizes transactions
 - **Fields**:
-  - `name` - Unique type name (max 30 chars)
+  - `name` - Unique type name
 
 ### `Category`
 - **Purpose**: Groups transactions under specific types
 - **Fields**:
-  - `name` - Unique category name (max 30 chars)
+  - `name` - Unique category name
   - `root_transaction_type` - ForeignKey to TransactionType
 
 ### `Subcategory`
 - **Purpose**: Provides detailed classification within categories
 - **Fields**:
-  - `name` - Unique subcategory name (max 30 chars)
+  - `name` - Unique subcategory name
   - `root_category` - ForeignKey to Category
 
 ### `Transaction`
 - **Purpose**: Main financial transaction record
 - **Fields**:
-  - `create_date` - Auto-set to current date (editable)
+  - `create_date` - Auto-set to current date
   - `status` - ForeignKey to Status
   - `transaction_type` - ForeignKey to TransactionType
   - `category` - ForeignKey to Category
   - `subcategory` - ForeignKey to Subcategory
-  - `amount` - Decimal value (min 0.01)
-  - `notes` - Optional comments (max 100 chars)
+  - `amount` - Decimal value
+  - `notes` - Optional comments
