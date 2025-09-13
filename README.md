@@ -29,11 +29,11 @@
    ```bash
    docker-compose up --build
    ```
-4. Apply database migrations
+4. Apply database migrations with active docker container
    ```bash
    docker-compose exec backend python manage.py migrate
    ```
-5. Create superuser
+5. Create superuser with active docker container
    
    ```bash
    docker-compose exec backend python manage.py createsuperuser
